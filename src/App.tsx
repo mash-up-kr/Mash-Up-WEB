@@ -10,7 +10,7 @@ export interface IUser {
 
 interface IAction {
   type: string;
-  payload?: IUser;
+  payload: IUser;
 }
 
 export interface IUserContext {
@@ -26,7 +26,7 @@ const App: React.FC = () => {
   const userReducer = (state: IUser, action: IAction) => {
     switch (action.type) {
       case 'login': {
-        return { ...state,}
+        return { ...state, email: action.payload.email}
       }
       default: {
         throw new Error(`unexpected action.type: ${action.type}`)

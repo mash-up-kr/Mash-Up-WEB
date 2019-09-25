@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useCallback, useState, useContext } from 'react'
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const white = '#ffffff'
 
@@ -73,14 +74,13 @@ const StyledInput = styled.input`
   height: 32.5px;
   font-family: NotoSansCJKkr;
   font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
   line-height: 1.45;
-  letter-spacing: normal;
   text-align: center;
-  color: #dddddd;
   border: none;
+  ::placeholder {
+  color: #dddddd;
+}
+
 `;
 
 const StlyedButtonWrapper = styled.div`
@@ -139,22 +139,50 @@ const StyledLink = styled(Link)`
   color: #4f42e9;
 `;
 
+const StyledName = styled.div`
+  margin-top: 18px;
+  font-family: NotoSansCJKkr;
+  font-size: 28px;
+  color: #000000;
+  font-weight: bolder;
+`;
 
-
-const Login: React.FC = () => {
+const Login: React.FC = ({ history }: any) => {
+  const { context: { userDispatch } }: any = useContext(UserContext);
+  const [email, setEmail] = useState('');
+  const [passoword, setPassword] = useState('');
+  const onSubmit = useCallback(event => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(email, passoword)
+    userDispatch({
+      type: 'login',
+      payload: {
+        email,
+      }
+    })
+    history.push('/');
+  }, [email, passoword]);
+  const onChangeEmail = useCallback(event => {
+    setEmail(event.target.value);
+  }, [])
+  const onChangePassword = useCallback(event => {
+    setPassword(event.target.value);
+  }, [])
   return (
     <StyledLogin>
       <StyledWrapper>
         <StyledLogoWrapper>
           <StyledLogo />
         </StyledLogoWrapper>
+        <StyledName>MASH UP</StyledName>
         <StyledTitle>로그인</StyledTitle>
-        <StyledFomr>
+        <StyledFomr onSubmit={onSubmit} >
           <StyledInputWrapper>
-            <StyledInput type='email' placeholder='이메일을 입력해주세요' />
+            <StyledInput type='email' placeholder='이메일을 입력해주세요' value={email} onChange={onChangeEmail} />
           </StyledInputWrapper>
           <StyledInputWrapper>
-            <StyledInput type='password' placeholder='비밀번호를 입력해주세요' />
+            <StyledInput type='password' placeholder='비밀번호를 입력해주세요' value={passoword} onChange={onChangePassword} />
           </StyledInputWrapper>
           <StlyedButtonWrapper>
             <StyledButton type='submit'>로그인하기</StyledButton>

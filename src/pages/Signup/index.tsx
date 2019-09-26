@@ -1,24 +1,49 @@
 import React, { useCallback, useState, useContext } from 'react'
+import styled from 'styled-components';
 
 import { UserContext } from '../../App';
-import { StyledLogin, StyledWrapper, StyledLogoWrapper, StyledLogo, StyledName, StyledTitle, StyledFomr, StyledInputWrapper, StyledInput, StlyedButtonWrapper, StyledButton, StyledDescription, StyledLink } from '../../common/StyledComponents';
+import { StyledLogin, StyledWrapper, StyledLogoWrapper, StyledLogo, StyledName, StyledTitle, StyledFomr, StyledInputWrapper, StyledInput, StlyedButtonWrapper, StyledButton, StyledDescription, StyledLink, StyledDescriptionWrapper } from '../../common/StyledComponents';
+
+const StyledTextWrapper = styled(StyledInputWrapper)`
+  border: solid 1px #4f42e9;
+  background-color: rgba(79, 66, 233, 0.15);
+`;
+
+const StyledText = styled.div`
+  height: 32.5px;
+  opacity: 0.8;
+  font-family: NotoSansCJKkr;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4f42e9;
+`;
 
 const Signup: React.FC = ({ history }: any) => {
   const { context: { userDispatch } }: any = useContext(UserContext);
-  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [passoword, setPassword] = useState('');
   const onSubmit = useCallback(event => {
     event.preventDefault();
     event.stopPropagation();
-    // userDispatch({
-    //   type: 'login',
-    //   payload: {
-    //     email,
-    //   }
-    // })
+    console.log(email, passoword)
+    userDispatch({
+      type: 'login',
+      payload: {
+        email,
+      }
+    })
     history.push('/');
-  }, [number]);
-  const onChangeNumber = useCallback(event => {
-    setNumber(event.target.value);
+  }, [email, passoword]);
+  const onChangeEmail = useCallback(event => {
+    setEmail(event.target.value);
+  }, [])
+  const onChangePassword = useCallback(event => {
+    setPassword(event.target.value);
   }, [])
   return (
     <StyledLogin>
@@ -27,21 +52,29 @@ const Signup: React.FC = ({ history }: any) => {
           <StyledLogo />
         </StyledLogoWrapper>
         <StyledName>MASH UP</StyledName>
-        <StyledTitle>인증하기</StyledTitle>
+        <StyledTitle>회원가입</StyledTitle>
         <StyledFomr onSubmit={onSubmit} >
+          <StyledTextWrapper>
+            <StyledText>휴대폰 번호 인증 완료</StyledText>
+          </StyledTextWrapper>
           <StyledInputWrapper>
-            <StyledInput type='number' placeholder='휴대폰 번호를 입력해주세요' value={number} onChange={onChangeNumber} />
+            <StyledInput type='email' placeholder='이메일을 입력해주세요' value={email} onChange={onChangeEmail} />
+          </StyledInputWrapper>
+          <StyledInputWrapper>
+            <StyledInput type='password' placeholder='비밀번호를 입력해주세요' value={passoword} onChange={onChangePassword} />
           </StyledInputWrapper>
           <StlyedButtonWrapper>
-            <StyledButton type='submit'>번호 인증하기</StyledButton>
+            <StyledButton type='submit'>회원가입 완료하기</StyledButton>
           </StlyedButtonWrapper>
         </StyledFomr>
-        <StyledDescription>
-          아이디가 있는 매쉬업 회원이라면?
+        <StyledDescriptionWrapper>
+          <StyledDescription>
+            아이디가 있는 매쉬업 회원이라면?
         </StyledDescription>
-        <StyledLink to='signup'>
-          로그인하기
+          <StyledLink to='/login'>
+            로그인하기
         </StyledLink>
+        </StyledDescriptionWrapper>
       </StyledWrapper>
     </StyledLogin>
   )

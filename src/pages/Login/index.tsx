@@ -48,7 +48,7 @@ const Login: React.FC = ({ history }: any) => {
           <StyledDescription>
             아이디가 없는 매쉬업 회원이라면?
           </StyledDescription>
-          <StyledLink to='signup'>
+          <StyledLink to='/authentication'>
             인증 및 회원가입
           </StyledLink>
         </StyledDescriptionWrapper>

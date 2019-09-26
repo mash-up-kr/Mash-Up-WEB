@@ -8,6 +8,9 @@ export const StyledLogin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #4f42e9
+
+;
 `;
 
 export const StyledWrapper = styled.div`
@@ -96,7 +99,6 @@ export const StlyedButtonWrapper = styled.div`
 export const StyledButton = styled.button`
   border: none;
   background-color: #4f42e9;
-  width: 118px;
   height: 30px;
   font-family: NotoSansCJKkr;
   font-size: 20px;

@@ -1,14 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-
-import deleteIcon from '../../images/icon_delete.svg'
-import authorImage from '../../images/icon_writer.svg'
-import dateIcon from '../../images/icon_date.svg'
-import clockIcon from '../../images/icon_clock.svg'
-import placeIcon from '../../images/icon_place.svg'
-import editIcon from '../../images/icon_edit.svg'
-import voteIcon from '../../images/icon_vote.svg'
+import Card from '../../components/Card';
 
 const StyledMain = styled.div``;
 const StyledHead = styled.div`
@@ -35,9 +28,6 @@ const StyledNavText = styled.div<any>`
   color: ${({ white }) => !!white ? '#ffffff' : '#4f42e9'};
   text-align: center;
 `
-
-
-
 
 const StyledUserInfo = styled.div`
     width: 360px;
@@ -88,6 +78,69 @@ const StlyedLink = styled(Link)`
   text-decoration: none;
 `;
 
+const StyledH1 = styled.h1`
+  margin-top: 40px;
+  margin-left: 164px;
+  font-family: NotoSansCJKjp;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.47;
+  text-align: left;
+  color: #282828;
+`;
+
+const StyledH1B = styled.b`
+  font-family: NotoSansCJKjp;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.47;
+  letter-spacing: normal;
+  text-align: left;
+  color: #282828;
+`;
+
+const StyledH2 = styled.h2`
+  margin-left: 164px;
+  font-family: NotoSansCJKjp;
+  font-size: 23px;
+  line-height: 1.48;
+  text-align: left;
+  color: #282828;
+`;
+
+const StyledHr = styled.div`
+  margin-top: 40px;
+  width: 100vw;
+  height: 2px;
+  background-color: #d0d6d9;
+`;
+
+const StyledCardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+`;
+
+const StyledPostButton = styled.button`
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #4f42e9;
+`;
+
+const StyledMoreButton = styled.button`
+  display: block;
+  margin: 0 auto;
+  width: 72px;
+  height: 22px;
+  border: solid 1.5px #616a76;
+`;
 
 
 interface Props {
@@ -97,6 +150,7 @@ interface Props {
 const Main: React.FC<Props> = () => {
   return (
     <StyledMain>
+      <StyledPostButton>5</StyledPostButton>
       <StyledHead>
         <StyledNav>
           <StyledLogoWrapper>
@@ -119,52 +173,16 @@ const Main: React.FC<Props> = () => {
           </StyledUserInfo>
         </Link>
       </StyledHead>
+      <StyledH1>매쉬업 <StyledH1B>전체회의 공지</StyledH1B>를 확인하세요.</StyledH1>
+      <StyledH2>총 10 회의 중 9번 참여</StyledH2>
+      <StyledHr />
       <StyledCardWrapper>
-      <StyledCardHead>
-        <StyledCategory>MASH-UP</StyledCategory>
-        <StyledDeleteImage src={deleteIcon} alt=""/>
-        </StyledCardHead>
-        <StyledCardBody>
-          <StyledCatdTitle>전체회의 공지</StyledCatdTitle>
-          <StyledAuthorWrapper>
-            <StyledAuthorImage src={authorImage} alt="" />
-            <StyledAuthorName>동그래</StyledAuthorName>
-          </StyledAuthorWrapper>
-          <StyledHr />
-          <StyledCardInfoWrapper>
-            <StyledCardInfo>
-              <StyledCardInfoImage src={dateIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
-            </StyledCardInfo>
-            <StyledCardInfo>
-              <StyledCardInfoImage src={clockIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
-            </StyledCardInfo>
-            <StyledCardInfo>
-              <StyledCardInfoImage src={placeIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
-            </StyledCardInfo>
-          </StyledCardInfoWrapper>
-          <StyledHr />
-          <StyledDescription>
-          이번 전체회의에서는 디자인을 잘 하는 방법에 대한 세미나가 있을 예정입니다. 함께 팀활동을 할 예정이니, 노트북을 가져와주시길 바랍니다. 그 후에는 자유롭게 프로젝트팀 회의 시간을 드릴 예정입니다. 오시는 분들 모두 회의 준비도 열시뮈 해서 만나요!!
-          </StyledDescription>
-          <StyledHr />
-          <StyledFixBoxWrapper>
-            <StyledFixBox>
-              <StyledFixBoxImage src={editIcon} alt="" />
-              <StyledFixBoxText>투표 | 00명 참여 중</StyledFixBoxText>
-              <StyledFixBoxArrow>></StyledFixBoxArrow>
-            </StyledFixBox>
-            <StyledFixBox>
-              <StyledFixBoxImage src={voteIcon} alt="" />
-              <StyledFixBoxText>투표 | 00명 참여 중</StyledFixBoxText>
-              <StyledFixBoxArrow>></StyledFixBoxArrow>
-            </StyledFixBox>
-
-          </StyledFixBoxWrapper>
-        </StyledCardBody>
-        </StyledCardWrapper>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </StyledCardWrapper>
+      <StyledMoreButton>6</StyledMoreButton>
     </StyledMain>
   )
 }
@@ -172,165 +190,3 @@ const Main: React.FC<Props> = () => {
 export default Main
 
 
-const StyledCardWrapper = styled.div`
-  width: 420px;
-  height: 530px;
-  /* background-color: #ffffff */
-  background-color: red;
-`;
-
-const StyledCategory = styled.div`
-  width: 122px;
-  height: 34.7px;
-  border-radius: 35px;
-  background-color: #ffb941;
-  line-height: 34.7px;
-  text-align: center;
-  margin-left: 16px;
-`;
-
-const StyledCardHead = styled.div`
-  width: 420px;
-  height: 58px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const StyledDeleteImage = styled.img`
-  width: 26px;
-  height: 26px;
-  margin-right: 24px;
-`;
-
-const StyledCardBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-`;
-
-const StyledCatdTitle = styled.div`
-  height: 47.1px;
-  font-family: NotoSansCJKjp;
-  font-size: 27px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.48;
-  letter-spacing: -0.68px;
-  text-align: center;
-  color: #525c69;
-`;
-
-const StyledAuthorWrapper = styled.div`
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-`;
-
-const StyledAuthorImage = styled.img`
-  width: 33.3px;
-  height: 33.3px;
-  object-fit: contain;
-`;
-
-const StyledAuthorName = styled.span`
-  height: 29.9px;
-  font-family: NotoSansCJKjp;
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 29.9px;
-  letter-spacing: -0.4px;
-  text-align: left;
-  color: #4b9efd;
-`;
-
-const StyledHr = styled.hr`
-  width: 420px;
-  height: 1px;
-  background-color: #ededed;
-`;
-
-const StyledCardInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledCardInfo = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const StyledCardInfoImage = styled.img`
-  width: 33.3px;
-  height: 33.3px;
-  object-fit: contain;
-`;
-const StyledCardInfoText = styled.div`
-  width: 277.2px;
-  height: 30.5px;
-  font-family: NotoSansCJKjp;
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 30.5px;
-  letter-spacing: -0.4px;
-  text-align: left;
-  color: #262626;
-`;
-
-const StyledDescription = styled.div`
-  margin: 0 36px;
-  width: 350px;
-  height: 124px;
-  font-family: NotoSansCJKjp;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.5;
-  letter-spacing: -0.4px;
-  text-align: left;
-  color: #262626;
-`;
-
-const StyledFixBoxWrapper = styled.div`
-  display: flex;
-`;
-
-const StyledFixBox = styled.div`
-  flex: 1;
-`;
-
-const StyledFixBoxImage = styled.img`
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-`;
-
-const StyledFixBoxText = styled.span`
-  display: inline-block;
-  height: 23px;
-  font-family: NotoSansCJKjp;
-  font-size: 15px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.47;
-  letter-spacing: -0.38px;
-  text-align: left;
-  color: #757575;
-`;
-
-const StyledFixBoxArrow = styled.span`
-  display: inline-block;
-  width: 6.7px;
-  height: 11.1px;
-  border: solid 0.8px #757575;
-  `;

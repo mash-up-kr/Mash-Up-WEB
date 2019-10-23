@@ -10,12 +10,13 @@ import editIcon from '../images/icon_edit.svg'
 import voteIcon from '../images/icon_vote.svg'
 import checkIcon from '../images/icon_check.svg'
 
-const StyledCardWrapper = styled.div`
+const StyledCardWrapper = styled.div<any>`
   display: inline-block;
-  width: 420px;
+  width: ${({isNew}) => isNew ? 560 : 420}px;
   background-color: #ffffff;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
   margin: 75px 16px;
+  position: relative;
 `;
 
 const StyledCategory = styled.div`
@@ -40,6 +41,10 @@ const StyledDeleteImage = styled.img`
   width: 26px;
   height: 26px;
   margin-right: 24px;
+  margin-top: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const StyledCardBody = styled.div`
@@ -205,6 +210,40 @@ const StyledVoteImage = styled.img`
   margin-bottom: 4px;
 `;
 
+const StyledInput = styled.input`
+  margin-left: 12px;
+  width: 370px;
+  font-family: NotoSansCJKjp;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #e6e6e6;
+  border: none;
+  border-bottom: solid 1px #ebf0f3;
+`;
+
+const StyledTextarea = styled.textarea`
+  width: 485px;
+  height: 124px;
+  font-family: NotoSansCJKjp;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
+  text-align: left;
+  color: #262626;
+  padding: 12px 36px;
+  border: none;
+  resize: none;
+`
+
+
 interface Props {
   isNew?: boolean;
 }
@@ -212,7 +251,7 @@ interface Props {
 const Card: React.FC<Props> = ({isNew}) => {
   console.log('Card',isNew);
   return (
-    <StyledCardWrapper>
+    <StyledCardWrapper isNew={isNew}>
       <StyledCardHead>
         <StyledCategory>MASH-UP</StyledCategory>
         <StyledDeleteImage src={deleteIcon} alt=""/>
@@ -226,23 +265,23 @@ const Card: React.FC<Props> = ({isNew}) => {
           <StyledCardInfoWrapper>
             <StyledCardInfo>
               <StyledCardInfoImage src={dateIcon} alt="" />
-              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
+              {isNew ? <StyledInput /> : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
             <StyledCardInfo>
               <StyledCardInfoImage src={clockIcon} alt="" />
-              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
+              {isNew ? <StyledInput /> : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
             <StyledCardInfo>
               <StyledCardInfoImage src={placeIcon} alt="" />
-              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
+              {isNew ? <StyledInput /> : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
           </StyledCardInfoWrapper>
-          {isNew ? 
-            '' : 
-            <StyledDescription>
+          {isNew
+          ? <StyledTextarea placeholder="이번 전체회의에서는 디자인을 잘 하는 방법에 대한 세미나가 있을 예정입니다. 함께 팀활동을 할 예정이니, 노트북을 가져와주시길 바랍니다. 그 후에는 자유롭게 프로젝트팀 회의 시간을 드릴 예정입니다. 오시는 분들 모두 회의 준비도 열시뮈 해서 만나요!!"/> 
+          : <StyledDescription>
               이번 전체회의에서는 디자인을 잘 하는 방법에 대한 세미나가 있을 예정입니다. 함께 팀활동을 할 예정이니, 노트북을 가져와주시길 바랍니다. 그 후에는 자유롭게 프로젝트팀 회의 시간을 드릴 예정입니다. 오시는 분들 모두 회의 준비도 열시뮈 해서 만나요!!
             </StyledDescription>}
-            {isNew ? '' : 
+          {isNew ? '' : 
             <>
           <StyledFixBoxWrapper>
             <StyledFixBox>

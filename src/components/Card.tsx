@@ -88,16 +88,13 @@ const StyledAuthorName = styled.span`
   color: #4b9efd;
 `;
 
-const StyledHr = styled.hr`
-  width: 420px;
-  height: 1px;
-  background-color: #ededed;
-`;
-
 const StyledCardInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: solid 1px #ededed;
+  border-bottom: solid 1px #ededed;
+  padding: 16px 0;
 `;
 
 const StyledCardInfo = styled.div`
@@ -125,7 +122,6 @@ const StyledCardInfoText = styled.div`
 `;
 
 const StyledDescription = styled.div`
-  margin: 0 36px;
   width: 350px;
   height: 124px;
   font-family: NotoSansCJKjp;
@@ -137,11 +133,13 @@ const StyledDescription = styled.div`
   letter-spacing: -0.4px;
   text-align: left;
   color: #262626;
+  padding: 12px 36px;
 `;
 
 const StyledFixBoxWrapper = styled.div`
   display: flex;
   height: 48px;
+  border-top: solid 1px #ededed;
 `;
 
 const StyledFixBox = styled.div`
@@ -207,7 +205,12 @@ const StyledVoteImage = styled.img`
   margin-bottom: 4px;
 `;
 
-const Card = () => {
+interface Props {
+  isNew?: boolean;
+}
+
+const Card: React.FC<Props> = ({isNew}) => {
+  console.log('Card',isNew);
   return (
     <StyledCardWrapper>
       <StyledCardHead>
@@ -220,26 +223,27 @@ const Card = () => {
             <StyledAuthorImage src={authorImage} alt="" />
             <StyledAuthorName>동그래</StyledAuthorName>
           </StyledAuthorWrapper>
-          <StyledHr />
           <StyledCardInfoWrapper>
             <StyledCardInfo>
               <StyledCardInfoImage src={dateIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
+              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
             <StyledCardInfo>
               <StyledCardInfoImage src={clockIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
+              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
             <StyledCardInfo>
               <StyledCardInfoImage src={placeIcon} alt="" />
-              <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>
+              {isNew ? '' : <StyledCardInfoText>강남역 8번 출구 하이퍼커넥트 14층</StyledCardInfoText>}
             </StyledCardInfo>
           </StyledCardInfoWrapper>
-          <StyledHr />
-          <StyledDescription>
-          이번 전체회의에서는 디자인을 잘 하는 방법에 대한 세미나가 있을 예정입니다. 함께 팀활동을 할 예정이니, 노트북을 가져와주시길 바랍니다. 그 후에는 자유롭게 프로젝트팀 회의 시간을 드릴 예정입니다. 오시는 분들 모두 회의 준비도 열시뮈 해서 만나요!!
-          </StyledDescription>
-          <StyledHr />
+          {isNew ? 
+            '' : 
+            <StyledDescription>
+              이번 전체회의에서는 디자인을 잘 하는 방법에 대한 세미나가 있을 예정입니다. 함께 팀활동을 할 예정이니, 노트북을 가져와주시길 바랍니다. 그 후에는 자유롭게 프로젝트팀 회의 시간을 드릴 예정입니다. 오시는 분들 모두 회의 준비도 열시뮈 해서 만나요!!
+            </StyledDescription>}
+            {isNew ? '' : 
+            <>
           <StyledFixBoxWrapper>
             <StyledFixBox>
               <StyledFixBoxImage src={editIcon} alt="" />
@@ -252,7 +256,6 @@ const Card = () => {
               <StyledFixBoxText>></StyledFixBoxText>
             </StyledFixBox>
           </StyledFixBoxWrapper>
-          <StyledHr />
           <StyledFixBoxWrapper>
             <StyledFixBox>
               <StlyedVoteText>참여할게요! 32</StlyedVoteText>
@@ -262,6 +265,8 @@ const Card = () => {
               <StyledVoteImage src={checkIcon} alt="" />
             </StyledFixBoxBlue>
           </StyledFixBoxWrapper>
+          </>
+            }
         </StyledCardBody>
         </StyledCardWrapper>
   )

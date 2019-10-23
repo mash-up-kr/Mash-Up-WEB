@@ -6,12 +6,14 @@ import Login from './pages/Login';
 import Authentication from './pages/Authentication'
 import Signup from './pages/Signup';
 import Main from './pages/Main';
+import AddSchedule from './pages/AddSchedule';
 
 interface Props {
 
 }
 
 const Routes = <Switch>
+  <Route path="/add/schedule" component={AddSchedule} />
   <Route path="/login" component={Login} />
   <Route path="/authentication" component={Authentication} />
   <Route path="/signup" component={Signup} />

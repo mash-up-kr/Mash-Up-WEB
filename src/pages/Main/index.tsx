@@ -16,6 +16,7 @@ const StyledPostButton = styled.button`
   border-radius: 50%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #4f42e9;
+  z-index: 999;
 `;
 
 const StyledCardWrapper = styled.div`

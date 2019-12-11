@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useContext } from 'react'
+import Axios from 'axios';
 
 import { UserContext } from '../../App';
 import { StyledLogin, StyledWrapper, StyledLogoWrapper, StyledLogo, StyledName, StyledTitle, StyledFomr, StyledInputWrapper, StyledInput, StlyedButtonWrapper, StyledButton, StyledDescription, StyledLink, StyledDescriptionWrapper } from '../../common/StyledComponents';
@@ -7,7 +8,7 @@ const Login: React.FC = ({ history }: any) => {
   const { context: { userDispatch } }: any = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [passoword, setPassword] = useState('');
-  const onSubmit = useCallback(event => {
+  const onSubmit = useCallback( async event => {
     event.preventDefault();
     event.stopPropagation();
     console.log(email, passoword)
@@ -18,6 +19,11 @@ const Login: React.FC = ({ history }: any) => {
       }
     })
     history.push('/');
+    // const result = await Axios.post('https://mashup.lhy.kr/api/members/', {
+    //   email,
+    //   passoword,
+    // })
+    // console.log(11, result)
   }, [email, passoword]);
   const onChangeEmail = useCallback(event => {
     setEmail(event.target.value);
